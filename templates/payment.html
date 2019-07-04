@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex flex-column justify-content-center" style="margin-top: 150px;">
+<h3 class="text-center mb-5" style="white-space: pre">You acquire:       <span style="color: #007bff">{{ beat.title|upper }}</span></h3>
+<iframe src="https://money.yandex.ru/quickpay/shop-widget?writer=seller&targets=%D0%9E%D0%BF%D0%BB%D0%B0%D1%82%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D0%BC%D1%83%D0%B7%D1%8B%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D0%B0&targets-hint=&default-sum={{ beat.price }}&button-text=11&payment-type-choice=on&mail=on&hint=&successURL=http%3A%2F%2Fkaizyproducer.com%2Ffetch_payment&quickpay=shop&account=41001972374867" width="423" height="250" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+</div>
+<!-- Button trigger modal -->
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>-->
+
+<!-- Modal -->
+<div class="exclusive-info modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Условия приобретения</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        После приобретения данного инструментала вы получаете аудиофайл без голосовой защиты в формате WAV, также инструментал изымается из продажи.
+Автором инструментала остается kaizyproducer ,инструментал можно использовать в коммерческих целях неограниченно в том числе выгружать на цифровые площадки, например BOOM, iTunes и тд
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

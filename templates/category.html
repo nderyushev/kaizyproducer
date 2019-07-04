@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="category-wrapper" style="margin-top: 100px;">
+    {% for beat in beats_in_category %}
+    <div class="card" style="">
+      <img src="{{ beat.cover.url }}" class="product-image mr-3 w-100" style="">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+        <h5>{{ beat.title|upper }}</h5>
+	<span style="font-size: 14px">{{ beat.bpm }}bpm</span>
+	<span style="font-size: 14px">{{ beat.tonality }}</span>
+        </div>
+        <audio class="player" controls style="">
+          <source src="{{ beat.track.url }}" type="audio/mp3">
+        </audio>
+        <p class="card-text">{{ beat.price }} p</p>
+        <a href="{{ beat.get_payment_url }}"><button href="" class="btn btn-dark" style="border-radius: 0">BUY <span style="font-size: 10px;">ONE CLICK</span></button></a>
+        <button href="#" class="btn add-cart-button" data-slug="{{ beat.slug }}" style="border-radius: 0">ADD TO CART</button>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+<script>
+    $(document).ready(function() {
+        $('.add-cart-button').on('click', function (event) {
+            event.preventDefault();
+            beat_slug = $(this).attr('data-slug');
+            data = {
+                beat_slug: beat_slug
+            };
+            $.ajax({
+                type: "GET",
+                url: '{% url "add_to_cart" %}',
+                data: data,
+                success: function (data) {
+                  console.log(data)
+                    $('#cart-count').html(data.cart_total)
+                }
+            })
+        })
+    });
+    </script>
+{% endblock %}

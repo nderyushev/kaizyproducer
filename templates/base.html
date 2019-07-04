@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  {% load static %}
+  <!--<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">-->
+  <!-- <link rel="icon" href="{% static 'icons/favicon.ico' %}"> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <!-- <script type="text/javascript" src="{% static 'js/bootstrap.js'%}"></script> -->
+  <!-- <script src="{% static 'js/audiojs/audio.min.js' %}"></script> -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.5.2/plyr.css" />
+  <link rel="stylesheet" href="{% static 'css/custom/main.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+<header class="" style="background: #fafafa; border-bottom: 1px solid rgb(200, 200, 200)">
+  <nav class="navbar navbar-light d-flex flex-column justify-content-center">
+
+    <div class="d-flex flex-column align-items-center">
+      <a href="{% url 'base' %}"><img src="{% static 'images/logo.png' %}" style="height: 86px; "></a>
+      <a href="{% url 'cart' %}" class="cart mb-3" style="color: black; font-size: 10px; text-decoration: none">
+        {% if not request.session.total %}
+        <span id="cart-count">0</span>
+        {% else %}
+        <span id="cart-count">{{ request.session.total }}</span>
+        {% endif %}
+        BEATS IN CART
+      </a>
+    </div>
+    {% if request.path != '/' %}
+    <div class="d-flex justify-content-center">
+      {% for category in categories %}
+      <a class="category-link nav-link" href="{{ category.get_absolute_url }}">{{ category.title }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </nav>
+</header>
+  <div class="container-fluid main-wrapper" style="min-height: 600px;">
+      <div class="row justify-content-center" style="width: 80%; margin: 0 auto">
+        {% block content %}
+	<div style="margin-top: 100px; width: 100%; display: grid; grid-template-columns: 1fr 1fr">
+		<div class="" style="margin: auto 0">
+			<h1>This is a beat repository</h1>
+			<h2>of <a href>kaizyproduction.</a></h2>
+		</div>
+		<div style="border-left: 1px solid black" class="d-flex flex-column justify-content-center">
+			      {% for category in categories %}
+      				<a class="main-link nav-link" style="font-size: 36px; text-align: center" href="{{ category.get_absolute_url }}">{{ category.title|upper }}</a>
+      			{% endfor %}
+		</div>
+	</div>
+        {% endblock %}
+      </div>
+  </div>
+  <footer class="mt-5 {% if request.path == '/' %}fixed-bottom{% endif %} d-flex flex-column justify-content-center" style="background: #fafafa; color: #000; border-top: 1px solid rgb(200, 200, 200)">
+        <!--<h5 class="mt-3 text-center">CONTACTS</h5>-->
+	<div class="footer-wrapper pt-5 pb-5" style="margin: 0 auto; width: 80%; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr">
+		<div class="text-center"><a href="https://vk.com/kaizy" style="color: #000; font-size: 32px;"><i class="fab fa-vk"></i></a></div>
+		<div class="text-center"><a href="https://www.instagram.com/icekaiz/" style="color: #000; font-size: 32px;"><i class="fab fa-instagram"></i></a></div>
+		<div class="text-center"><a href="https://twitter.com/icekaiz" style="color: #000; font-size: 32px;"><i class="fab fa-twitter"></i></a></div>
+		<div class="text-center"><a href="https://www.youtube.com/channel/UCBZhhCBIhlHqNdJah9CEuYw/videos" style="color: #000; font-size: 32px;"><i class="fab fa-youtube"></i></a></div>
+	</div>
+  </footer>
+  <script src="https://cdn.plyr.io/3.5.2/plyr.js"></script>
+  <script>
+      const players = Plyr.setup('.player');
+  </script>
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
+

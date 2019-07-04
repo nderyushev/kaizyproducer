@@ -1,0 +1,58 @@
+@font-face {
+    font-family: Univers;
+    src: url(../../fonts/univers.ttf);
+}
+
+body {
+  background-image: url('../../images/back.jpg'); 
+  background-size: cover; 
+  /* width: 100%;
+  height: 100%; */
+  font-family: Univers;
+}
+
+/* .wrapper {
+  background-color: rgba(255, 255, 255, 0.7);
+  height: 800px;
+} */
+
+hr {
+  color: black;
+}
+
+.category a {
+  color: black;
+}
+
+.plyr--audio .plyr__controls {
+  /* background: black; */
+}
+
+.category-link {
+  font-size: 16px;
+  color: black;
+}
+
+.category-link:hover {
+  font-size: 20px;
+  color: black;
+}
+
+.nav-link {
+  color: black;
+}
+
+.category-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 30px;
+}
+
+@media screen and (max-width: 980px) {
+  .category-wrapper {
+    display: grid; 
+    grid-template-columns: 1fr; 
+    grid-row-gap: 30px;
+  }
+}
+
